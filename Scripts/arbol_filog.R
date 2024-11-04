@@ -7,17 +7,24 @@ library(Biostrings)
 secuencia <- readDNAStringSet("raw_data/DivergentGlobins (1).fasta") ##Leer la secuencia fasta 
 
 
-# Alinear secuencias con ClustalW
-alineamiento <- msa(secuencia, method = "ClustalW") 
+# Alineamientos con ClustalW y Muscle
+alineamiento_clustal <- msa(secuencia, method = "ClustalW")
+alineamiento_muscle <- msa(secuencia, method = "Muscle")
 
-# Convertir alineamiento a una matriz
-alineamiento_matriz <- as.matrix(msaConvert(alineamiento, type = "seqinr::alignment"))
+# Convertir alineamientos a objetos de clase 'alignment' de seqinr
+alineamiento_clustal_seqinr <- msaConvert(alineamiento_clustal, type = "seqinr::alignment")
+alineamiento_muscle_seqinr <- msaConvert(alineamiento_muscle, type = "seqinr::alignment")
 
-install.packages("seqinr")
-library(seqinr)
+# Calcular las matrices de distancia
+matriz_distancia_clustal <- dist.alignment(alineamiento_clustal_seqinr, "identity")
+matriz_distancia_muscle <- dist.alignment(alineamiento_muscle_seqinr, "identity")
 
-library(ape)
+# Construir y graficar los árboles filogenéticos
+pdf("result/arboles_globinas.pdf") # Guardar en PDF
+arbol_clustal <- nj(matriz_distancia_clustal)
+plot(arbol_clustal, main = "Árbol filogenético de alineamiento con ClustalW")
 
-# Calcular la matriz de distancias
-
+arbol_muscle <- nj(matriz_distancia_muscle)
+plot(arbol_muscle, main = "Árbol filogenético de alineamiento con Muscle")
+dev.off()
 
