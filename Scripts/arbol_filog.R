@@ -19,6 +19,5 @@ library(seqinr)
 library(ape)
 
 # Calcular la matriz de distancias
-distancias <- dist.alignment(alineamiento_matriz, "identity") # "identity" calcula la distancia en base a coincidencias
 
 
