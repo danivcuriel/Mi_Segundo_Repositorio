@@ -10,3 +10,8 @@ tree <- rtree(10) ##árbol aleatorio generado
 ggtree(tree)+
   geom_tiplab()
 
+
+##Usar ggtree en mi árbol 
+ggtree( arbol_clustal, layout = "circular")+
+  geom_tiplab(size= 3, color= "purple")  ##Como las hago más chiquitas??? porque no se ve el nombre de mis grupos 
+  
