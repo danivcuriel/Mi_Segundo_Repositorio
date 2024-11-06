@@ -3,7 +3,7 @@
 library(ggmsa)
 library(msa)
 library(Biostrings)
-
+library(seqinr)
 secuencia <- readDNAStringSet("raw_data/DivergentGlobins (1).fasta") ##Leer la secuencia fasta 
 
 
@@ -19,12 +19,15 @@ alineamiento_muscle_seqinr <- msaConvert(alineamiento_muscle, type = "seqinr::al
 matriz_distancia_clustal <- dist.alignment(alineamiento_clustal_seqinr, "identity")
 matriz_distancia_muscle <- dist.alignment(alineamiento_muscle_seqinr, "identity")
 
-pdf("result/arbol_clustal.pdf")
+library(ape)
+pdf("resultados/arbol_clustal.pdf")
 arbol_clustal <- nj(matriz_distancia_clustal)
 plot(arbol_clustal, main = "Árbol filogenético de alineamiento con ClustalW")
 dev.off()
 
-pdf("result/arbol_muscle.pdf") ###No se me guardaaaa 
+pdf("resultados/arbol_muscle.pdf")
 arbol_muscle <- nj(matriz_distancia_muscle)
 plot(arbol_muscle, main = "Árbol filogenético de alineamiento con Muscle")
 dev.off()
+
+

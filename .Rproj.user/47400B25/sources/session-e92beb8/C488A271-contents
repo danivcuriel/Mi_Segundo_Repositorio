@@ -1,5 +1,0 @@
-###Usando ggmsa
-BiocManager::install("ggmsa")
-library(ggmsa)
-
-ggmsa("raw_Data/alineamiento_fasta.fas")
