@@ -12,6 +12,11 @@ ggtree(tree)+
 
 
 ##Usar ggtree en mi árbol 
-ggtree( arbol_clustal, layout = "circular")+
-  geom_tiplab(size= 3, color= "purple")  ##Como las hago más chiquitas??? porque no se ve el nombre de mis grupos 
+library(ggtree)
+
+arbol_clustal
+ggtree (arbol_clustal, branch.length = "none")+
+  geom_tiplab()
+
+
   
