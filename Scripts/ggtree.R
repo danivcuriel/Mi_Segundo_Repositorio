@@ -16,7 +16,10 @@ library(ggtree)
 
 arbol_clustal
 ggtree (arbol_clustal, branch.length = "none")+
-  geom_tiplab()
+  geom_tiplab(size= 3, color ="purple", offset = 0.1 )
+
+ggtree(arbol_clustal, layout = "circular", branch.length = "none") +
+  geom_tiplab(size = 2, offset = 0.1)   
 
 
   
